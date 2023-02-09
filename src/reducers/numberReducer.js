@@ -10,10 +10,17 @@ const initialState = {
     reducers: {
         increment: (state, action) => {
             state.value++
+        },
+        decrement: (state, action) => {
+            state.value--
+        },
+        custom:(state, action)=>{
+            //action payload is just the param youre passing through
+            state.value = state.value + action.payload
         }
     }
 })
 
-export const {increment}= numberSlice.actions;
+export const {increment, decrement, custom}= numberSlice.actions;
 
 export default numberSlice.reducer;
