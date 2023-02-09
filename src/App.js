@@ -1,20 +1,26 @@
-
-import {useSelector, useDispatch} from "react-redux";
-import {custom, decrement, increment} from "./reducers/numberReducer";
+import {Routes, Route, Link} from "react-router-dom";
+import Info from "./pages/Info";
+import Admin from "./pages/Admin";
+import Students from "./pages/Students";
 
 function App() {
 
-  const number = useSelector(state=>state.number.value);
-  const dispatch = useDispatch();
-
-  return (
-    <div className="App">
-      <h1>{number}</h1>
-        <button onClick={()=>dispatch(increment())}>Up by 1</button>
-        <button onClick={()=>dispatch(decrement())}>Down by 1</button>
-        <button onClick={()=>dispatch(custom(3))}>Up by 3</button>
-    </div>
-  );
+    return (
+        <div className="App">
+            <nav>
+                <Link to={"/"}>Info</Link>
+                <Link to={"/admin"}>Admin</Link>
+                <Link to={"/student/1"}>ST1</Link>
+                <Link to={"/student/2"}>ST2</Link>
+                <Link to={"/student/3"}>ST3</Link>
+            </nav>
+          <Routes>
+            <Route index path={"/"} element={<Info/>}/>
+            <Route path={"/admin"} element={<Admin/>}/>
+            <Route path={"/student/:id"} element={<Students/>}/>
+          </Routes>
+        </div>
+    );
 }
 
 export default App;
